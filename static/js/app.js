@@ -41,7 +41,7 @@ function filterTable() {
     filteredData = tableData;
     // Loop through all of the filters and keep any data that
     // matches the filter values
-    var filter = ['date', 'city', 'state', 'country', 'shape'];
+    var filter = ['datetime', 'city', 'state', 'country', 'shape'];
     
     filter.forEach(updateFilters);
   
