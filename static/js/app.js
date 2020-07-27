@@ -24,6 +24,35 @@ function buildTable(data) {
   });
 }
 
+function updateFilters(item) {
+  filters = {};
+  // Save the element, value, and id of the filter that was changed
+  var ivalue = d3.select("#"+item).property("value");
+  // If a filter value was entered then add that filterId and value
+  // to the filters list. Otherwise, clear that filter from the filters object
+    if (ivalue) {filters.append=[{item: ivalue}]};
+  
+  //  filteredData = filteredData.filter(row => row.item === item);}
+}
+
+// challenge code
+function filterTable() {
+    // Set the filteredData to the tableData
+    filteredData = tableData;
+    // Loop through all of the filters and keep any data that
+    // matches the filter values
+    var filter = ['date', 'city', 'state', 'country', 'shape'];
+    
+    filter.forEach(updateFilters);
+  
+    // Finally, rebuild the table using the filtered Data
+    buildTable(filteredData);
+}
+// Keep track of all filters
+// This function will replace your handleClick function
+
+ 
+// original code below
 function handleClick() {
     // Grab the datetime value from the filter
     let date = d3.select("#datetime").property("value");
@@ -43,8 +72,7 @@ function handleClick() {
     buildTable(filteredData);
   }
   
-  // Attach an event to listen for the form button
-  d3.selectAll("#filter-btn").on("click", handleClick);
-  
-  // Build the table when the page loads
-  buildTable(tableData);
+// Attach an event to listen for changes to each filter
+// Hint: You'll need to select the event and what it is listening for within each set of parenthesis
+d3.selectAll("#filter-btn").on("click", filterTable);
+
